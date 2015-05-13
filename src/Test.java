@@ -42,7 +42,7 @@ public class Test extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
-		setBounds(0, 0, 686, 678);
+		/*setBounds(0, 0, 686, 678);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
@@ -53,8 +53,21 @@ public class Test extends JFrame {
  	    doubleGame.setSize(800, 600);
  	    doubleGame.setLocation(0, 0);
  	    doubleGame.setVisible(true);
- 	    doubleGame.setOpaque(true);
-
+ 	    doubleGame.setOpaque(true);*/
+		
+		setBounds(0, 0, 1366, 768);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+		
+	
+		JPanel teamsMapsPanel = new TeamsMapsPanel(1366,768);
+ 	    this.getContentPane().add(teamsMapsPanel);
+ 	    teamsMapsPanel.setSize(1366,768);
+ 	   	teamsMapsPanel.setLocation(0, 0);
+ 	   	teamsMapsPanel.setVisible(true);
+ 	   	teamsMapsPanel.setOpaque(true);
 		
 	}
 
