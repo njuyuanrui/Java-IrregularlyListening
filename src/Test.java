@@ -54,20 +54,8 @@ public class Test extends JFrame {
  	    doubleGame.setLocation(0, 0);
  	    doubleGame.setVisible(true);
  	    doubleGame.setOpaque(true);
+
 		
-		//contentPane.add(new TeamBasicInfoLabel(bl.getAllTeams().get(0), 192*9, 200));
-		
-		//contentPane.add(new AllTeamPanel(192*9, 1080, bl,contentPane));
-		//contentPane.add(new MatchInfoPanel(192*9, 1080, bl.getAllMatches().get(0),bl));
-		
-		
-		
-		/*MatchPanel matchPanel = new MatchPanel(0,0,bl);
-		JScrollPane scrollPane = new JScrollPane(matchPanel);
-		scrollPane.setBounds(0, 0, 1920, 1080);
-		contentPane.add(scrollPane);*/
-		
-		//contentPane.add(matchPanel);
 	}
 
 }
