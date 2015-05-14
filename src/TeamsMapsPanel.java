@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,19 +14,18 @@ import javax.swing.JPanel;
 
 public class TeamsMapsPanel extends JPanel implements MouseMotionListener {
 
-
 	int width;
 	int height;
-	
+
 	ArrayList<BufferedImage> imageList = new ArrayList<BufferedImage>(); // 原图片组件
 	ArrayList<BufferedImage> imageList_highlight = new ArrayList<BufferedImage>(); // 高亮图片组件
 	ArrayList<BufferedImage> imageToDraw = new ArrayList<BufferedImage>(); // 待绘图片组件
 
-	int currentHighLight;    				//当前高亮的组件1~14，如果为0则表示没有高亮
+	int currentHighLight; // 当前高亮的组件1~14，如果为0则表示没有高亮
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		
+
 		for (BufferedImage each : imageToDraw) {
 			g.drawImage(each, 0, 0, this);
 
@@ -69,22 +69,25 @@ public class TeamsMapsPanel extends JPanel implements MouseMotionListener {
 		int ix = e.getX();
 		int iy = e.getY();
 		int index = 0; // 储存匹配到的图片序号
+
 		for (BufferedImage each : imageList) {
 			index++;
-			int[] arr = each.getData().getPixel(ix, iy, new int[4]);
-			if (arr[3] != 0) {
-				//首先恢复之前高亮的部分
-				if(currentHighLight!=0){
-					imageToDraw.set(currentHighLight-1, imageList.get(currentHighLight-1));
+			int alpha = (each.getRGB(ix, iy) >> 24) & 0xff;
+			if (alpha != 0) {
+				// 首先恢复之前高亮的部分 if(currentHighLight!=0){
+				if (currentHighLight != 0) {
+					imageToDraw.set(currentHighLight - 1,
+							imageList.get(currentHighLight - 1));
 				}
-				//修改当前高亮部分序号
+
+				// 修改当前高亮部分序号
 				currentHighLight = index;
 				imageToDraw.set(index - 1, imageList_highlight.get(index - 1));
 				repaint();
 				break;
 			}
+
 		}
-		
 
 	}
 }
